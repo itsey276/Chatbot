@@ -1,0 +1,14 @@
+[Unit]
+Description=Gunicorn instance to serve Flask app
+After=network.target
+
+[Service]
+User=thinh
+Group=www-data
+WorkingDirectory=/home/thinh/flask_app
+Environment="PATH=/home/thinh/flask_app/venv/bin"
+Environment="UF_API_KEY=sk-OCyI9MFFuw9Rsi9dobzHnA"
+ExecStart=/home/thinh/flask_app/venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target
